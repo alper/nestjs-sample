@@ -1,0 +1,27 @@
+meta {
+  name: Create book
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/books
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": 8,
+    "title": "Asohel new title",
+    "description": "Much much  descriptiono",
+    "author": "jhonnhiyhn boy"
+  }
+}
+
+body:multipart-form {
+  id: 7
+  title: New title
+  description: better description
+  author: john doe
+}
