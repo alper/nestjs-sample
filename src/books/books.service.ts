@@ -1,16 +1,15 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { BOOKS } from 'src/mocks/books.mocks';
+import { BOOKS_REPOSITORY_TOKEN, BooksRepository } from './repositories/book.repository.interface';
 
 @Injectable()
 export class BooksService {
     books = BOOKS;
 
+    constructor(@Inject(BOOKS_REPOSITORY_TOKEN) private booksRepository: BooksRepository) { };
+
     getBooks(): Promise<any> {
-        return new Promise(
-            resolve => {
-                resolve(this.books);
-            }
-        );
+        return this.booksRepository.findAll();
     }
 
     getBook(bookID): Promise<any> {
@@ -28,12 +27,7 @@ export class BooksService {
     }
 
     addBook(book): Promise<any> {
-        if (book.id) {
-            return new Promise(resolve => {
-                this.books.push(book);
-                resolve(this.books);
-            });
-        }
+        return this.booksRepository.create(book);
     }
 
     deleteBook(bookID): Promise<any> {
