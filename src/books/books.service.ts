@@ -13,7 +13,6 @@ export class BooksService {
     }
 
     getBook(bookID): Promise<any> {
-        console.log("Got id", bookID);
         let id = Number(bookID);
         return new Promise(resolve => {
             const book = this.books.find(book => book.id === id);

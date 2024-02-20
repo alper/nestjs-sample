@@ -21,16 +21,12 @@ export function provideBooksRepository(): Provider[] {
 
 async function provideBooksRepositoryFactory(dependenciesProvidedr: BooksRepoDependenciesProvider) {
     await ConfigModule.forRoot();
-    console.log("provide books", process.env.BOOKS_DATASOURCE);
 
     switch (process.env.BOOKS_DATASOURCE) {
         case DataSourceSetting.TYPEORM:
-            console.log("Getting A TYPEORM");
             return new BooksTypeOrmRepository(dependenciesProvidedr.typeOrmRepository);
         case DataSourceSetting.MEMORY:
-            console.log("Getting a MEMOREY");
         default:
-            console.log("Getting DEFAULT");
             return new BooksInMemoryRepository();
 
     }

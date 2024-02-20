@@ -1,5 +1,5 @@
 import { registerAs } from "@nestjs/config";
-import { Book } from "../books/entities/books.entity";
+import { Book } from "../books/models/book.model";
 import { ConnectionOptions, DataSource, DataSourceOptions } from "typeorm";
 
 export const dbConfig = {
@@ -10,7 +10,9 @@ export const dbConfig = {
     password: 'nestjs',
     database: 'nestjsbooks',
     entities: [Book],
-    synchronize: true,
+    // migrations: ['./src/migrations/*.ts'],
+    migrations: ['dist/migrations/*.js'],
+    synchronize: false,
 }
 
 export default registerAs('typeorm', () => dbConfig);
