@@ -16,17 +16,15 @@ export class BooksController {
     }
 
     @Get(':book')
-    async getBook(@Req() request: Request, @Param() params: any) {
+    async getBook(@Param('book') bookID: string) {
         // @Param('bookId') bookId: string
         // console.log("bookId", bookId);
-        console.log("request", request);
-        console.log("params", params);
 
         // console.log("params", bookId);
 
-        // const book = await this.bookService.getBook(bookId);
+        const book = await this.bookService.getBook(bookID);
 
-        // return book;
+        return book;
     }
 
     @Post()

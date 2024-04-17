@@ -4,8 +4,12 @@ meta {
   seq: 4
 }
 
-get {
-  url: http://localhost:3000/books/3/
+delete {
+  url: http://localhost:3000/books/?bookID=15
   body: none
   auth: none
+}
+
+query {
+  bookID: 15
 }

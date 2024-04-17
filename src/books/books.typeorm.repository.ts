@@ -13,9 +13,9 @@ export class BooksTypeOrmRepository implements BooksRepository {
     }
 
     async delete(bookId: string): Promise<boolean> {
-        await this.booksRepository.delete(bookId);
+        const result = await this.booksRepository.delete(bookId);
 
-        return true;
+        return result.affected > 0;
     }
 
     async create(book: CreateBookDto): Promise<number> {
