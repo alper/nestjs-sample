@@ -1,6 +1,6 @@
 import { registerAs } from "@nestjs/config";
-import { Book } from "../books/models/book.model";
-import { ConnectionOptions, DataSource, DataSourceOptions } from "typeorm";
+import { Book } from "./books/books.model";
+import { DataSource, DataSourceOptions } from "typeorm";
 
 export const dbConfig = {
     type: 'postgres',
